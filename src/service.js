@@ -157,11 +157,21 @@ Service.prototype.create = function create(rpcImpl, requestDelimited, responseDe
     var rpcService = new rpc.Service(rpcImpl, requestDelimited, responseDelimited);
     for (var i = 0, method; i < /* initializes */ this.methodsArray.length; ++i) {
         var methodName = util.lcFirst((method = this._methodsArray[i]).resolve().name).replace(/[^$\w_]/g, "");
-        rpcService[methodName] = util.codegen(["r","c"], util.isReserved(methodName) ? methodName + "_" : methodName)("return this.rpcCall(m,q,s,r,c)")({
-            m: method,
-            q: method.resolvedRequestType.ctor,
-            s: method.resolvedResponseType.ctor
-        });
+        var func=function(r,c) {
+            return function(m,q,s) {
+                return this.rpcCall(m,q,s,r,c);
+            };
+        };
+        rpcService[methodName] = function (m,q,s) {
+            return function (r,c){
+                return this.rpcCall(m,q,s,r,c);
+            };
+        };
+        // rpcService[methodName] = util.codegen(["r","c"], util.isReserved(methodName) ? methodName + "_" : methodName)("return this.rpcCall(m,q,s,r,c)")({
+        //     m: method,
+        //     q: method.resolvedRequestType.ctor,
+        //     s: method.resolvedResponseType.ctor
+        // });
     }
     return rpcService;
 };
