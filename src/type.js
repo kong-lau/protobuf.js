@@ -198,11 +198,11 @@ Type.generateConstructor = function generateConstructor(mtype) {
     /* eslint-disable no-unexpected-multiline */
     return function () {
         var func=function (p) {
-            for (var i = 0, field; i < mtype.fieldsArray.length; ++i)
-                if ((field = mtype._fieldsArray[i]).map)
-                    this[field.name]={};
-                else if (field.repeated)
-                    this[field.name]=[];
+            // for (var i = 0, field; i < mtype.fieldsArray.length; ++i)
+            //     if ((field = mtype._fieldsArray[i]).map)
+            //         this[field.name]={};
+            //     else if (field.repeated)
+            //         this[field.name]=[];
             if(p)for(var ks=Object.keys(p),j=0;j<ks.length;++j)if(p[ks[j]]!=null)
                 this[ks[j]]=p[ks[j]];
         };

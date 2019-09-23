@@ -1,6 +1,6 @@
 /*!
  * protobuf.js v6.8.8 (c) 2016, daniel wirtz
- * compiled sat, 21 sep 2019 09:40:15 utc
+ * compiled mon, 23 sep 2019 09:28:10 utc
  * licensed under the bsd-3-clause license
  * see: https://github.com/dcodeio/protobuf.js for details
  */
@@ -2505,8 +2505,8 @@ Field.prototype.resolve = function resolve() {
         this.defaultValue = this.typeDefault;
 
     // ensure proper value on prototype
-    if (this.parent instanceof Type)
-        this.parent.ctor.prototype[this.name] = this.defaultValue;
+    // if (this.parent instanceof Type)
+    //     this.parent.ctor.prototype[this.name] = this.defaultValue;
 
     return ReflectionObject.prototype.resolve.call(this);
 };
@@ -5362,11 +5362,11 @@ Type.generateConstructor = function generateConstructor(mtype) {
     /* eslint-disable no-unexpected-multiline */
     return function () {
         var func=function (p) {
-            for (var i = 0, field; i < mtype.fieldsArray.length; ++i)
-                if ((field = mtype._fieldsArray[i]).map)
-                    this[field.name]={};
-                else if (field.repeated)
-                    this[field.name]=[];
+            // for (var i = 0, field; i < mtype.fieldsArray.length; ++i)
+            //     if ((field = mtype._fieldsArray[i]).map)
+            //         this[field.name]={};
+            //     else if (field.repeated)
+            //         this[field.name]=[];
             if(p)for(var ks=Object.keys(p),j=0;j<ks.length;++j)if(p[ks[j]]!=null)
                 this[ks[j]]=p[ks[j]];
         };
