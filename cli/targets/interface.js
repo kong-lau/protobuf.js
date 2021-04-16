@@ -65,7 +65,7 @@ function exportName(object, asInterface) {
     while (i < parts.length)
         parts[i] = escapeName(parts[i++]);
     if (asInterface)
-        parts[i - 1] = "I" + parts[i - 1];
+        parts[i - 1] = parts[i - 1];
     return object[asInterface ? "__interfaceName" : "__exportName"] = parts.join(".");
 }
 
@@ -152,8 +152,8 @@ function buildType(ref, type) {
     if (config.comments) {
         var typeDef = [
             "Properties of " + aOrAn(type.name) + ".",
-            type.parent instanceof protobuf.Root ? "@exports " + escapeName("I" + type.name) : "@memberof " + exportName(type.parent),
-            "@interface " + escapeName("I" + type.name)
+            type.parent instanceof protobuf.Root ? "@exports " + escapeName(type.name) : "@memberof " + exportName(type.parent),
+            "@interface " + escapeName(type.name)
         ];
         type.fieldsArray.forEach(function (field) {
             var prop = util.safeProp(field.name); // either .name or ["name"]
