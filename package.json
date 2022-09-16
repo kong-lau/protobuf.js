@@ -51,9 +51,8 @@
     "@protobufjs/path": "^1.1.2",
     "@protobufjs/pool": "^1.1.0",
     "@protobufjs/utf8": "^1.1.0",
-    "@types/long": "^4.0.0",
     "@types/node": "^10.1.0",
-    "long": "^4.0.0"
+    "long": "^5.0.0"
   },
   "devDependencies": {
     "benchmark": "^2.1.4",
